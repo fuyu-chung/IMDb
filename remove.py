@@ -45,6 +45,6 @@ import pandas as pd
 # title.ratings.csv
 # file7 = pd.read_csv("title.ratings.csv") # read title.ratings.csv
 # print(file7.loc[:, 'numVotes'].mean()) # print numVote average
-# file7.drop(file7.loc[file7['numVotes'] < 500].index, inplace = True) #remove numVotes < 500 row
+# file7.drop(file7.loc[file7['numVotes'] < 1000].index, inplace = True) #remove numVotes < 1000 row
 # file7.to_csv("new.title.ratings.csv", index = False) # output
 
