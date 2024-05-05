@@ -1,9 +1,14 @@
 import pandas as pd
-from glob import glob
 
-file1 = pd.read_csv("title.principals.csv")
-file2 = pd.read_csv("title.basics.csv")
+# file1 = pd.read_csv("new.name.basics.csv") # read new title.akas.csv
+file2 = pd.read_csv("new.title.akas.csv") # read new title.akas.csv
+file3 = pd.read_csv("new.title.basics.csv") # read new title.basics.csv
+file4 = pd.read_csv("new.title.crew.csv") # read new title.crew.csv
+file5 = pd.read_csv("new.title.episode.csv") # read new title.episode.csv
+# file6 = pd.read_csv("new.title.principals.csv") # read new title.principals.csv
+file7 = pd.read_csv("new.title.ratings.csv") # read new title.ratings.csv
 
-result = pd.merge(left = file1, right = file2, how = "inner", on = "tconst")
-result.to_csv("result.csv", index=False)
-# print(result)
+akas_basics_crew_ratings = file2.merge(file3, on = 'tconst', how = 'inner').merge(file4, on = 'tconst', how = 'inner').merge(file7, on = 'tconst', how = 'inner')
+akas_basics_crew_ratings.to_csv("akas_basics_crew_ratings.csv", index = False)
+
+
