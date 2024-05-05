@@ -1,7 +1,7 @@
 import pandas as pd
 
 # # name.basics.csv
-# file1 = pd.read_csv("new.name.basics.csv") # read title.akas.csv
+# file1 = pd.read_csv("name.basics.csv") # read title.akas.csv
 # file1.drop(['birthYear', 'deathYear'], axis = 1, inplace = True) #remove birthYear, deathYear column
 # file1.to_csv("new.name.basics.csv", index = False) # row output
 
