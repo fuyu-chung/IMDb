@@ -1,0 +1,8 @@
+# output folder
+.dist
+
+# Mac OS file
+.DS_Store
+
+# original csv files
+csv
