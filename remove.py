@@ -48,7 +48,7 @@ import numpy as np
 # file3 = pd.read_csv("csv/title.basics.csv")
 # file3.drop(['originalTitle', 'isAdult', 'endYear'], axis=1, inplace=True)
 # file3.drop(file3.loc[file3['startYear'] < '2000'].index, inplace=True) # remove startYear < 2000 row
-# file3.drop(file3.loc[file3['startYear'].isin([r'\N']) | file3['runtimeMinutes'].isin([r'\N']) | file3['genres'].isin([r'\N']) | ~file3['titleType'].isin(['movie'])].index, inplace=True) # remove startYear < 2000 row
+# file3.drop(file3.loc[file3['startYear'].isin([r'\N']) | file3['runtimeMinutes'].isin([r'\N']) | file3['genres'].isin([r'\N']) | ~file3['titleType'].isin(['movie'])].index, inplace=True)
 # file3.drop(['titleType'], axis=1, inplace=True)
 # file3.to_csv("new.title.basics.csv", index=False)
 
