@@ -36,6 +36,9 @@ y_pred = model.predict(X_test)
 
 mse = mean_squared_error(y_test, y_pred)
 print("Mean Squared Error:", mse)
+print('訓練集: ',model.score(X_train,y_train))
+print('測試集: ',model.score(X_test,y_test))
+print('特徵重要程度: ',model.feature_importances_)
 
 """ 畫圖 """
 
