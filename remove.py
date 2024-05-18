@@ -2,36 +2,36 @@ import pandas as pd
 import numpy as np
 
 # name.basics.csv
-# file1 = pd.read_csv("csv/name.basics.csv") # read name.basics.csv
-# file1.drop(['birthYear', 'deathYear'], axis=1, inplace=True) #remove birthYear, deathYear column
-# file6 = pd.read_csv("new_csv/new.title.principals.csv")
-# nconst = file6['nconst'].unique().tolist() # save all unique nconst value in new.title.principals.csv
-# file1.drop(file1.loc[~file1['nconst'].isin(nconst) | file1['primaryProfession'].isin([r'\N']) | file1['knownForTitles'].isin([r'\N'])].index, inplace=True) # remove nconst not include in new.title.principals['nconst'] row or # remove primaryProfession == r'\N' row
+file1 = pd.read_csv("csv/name.basics.csv") # read name.basics.csv
+file1.drop(['birthYear', 'deathYear'], axis=1, inplace=True) #remove birthYear, deathYear column
+file6 = pd.read_csv("new_csv/new.title.principals.csv")
+nconst = file6['nconst'].unique().tolist() # save all unique nconst value in new.title.principals.csv
+file1.drop(file1.loc[~file1['nconst'].isin(nconst) | file1['primaryProfession'].isin([r'\N']) | file1['knownForTitles'].isin([r'\N'])].index, inplace=True) # remove nconst not include in new.title.principals['nconst'] row or # remove primaryProfession == r'\N' row
 
-# profession = ['actor', 'actress', 'director', 'editor', 'producer', 'writer']
-# file1[['primaryProfession1', 'primaryProfession2','primaryProfession3']] =(file1['primaryProfession'].str.split(',',expand=True)) # split primaryProfession to three column
-# file1['primaryProfession1'].loc[~file1['primaryProfession1'].isin(profession)] = '' # if primaryProfession1 is not in profession, set its value to ''
-# file1['primaryProfession2'].loc[~file1['primaryProfession2'].isin(profession)] = '' 
-# file1['primaryProfession3'].loc[~file1['primaryProfession3'].isin(profession)] = ''
-# file1["primaryProfession"] = file1["primaryProfession1"] + ',' + file1["primaryProfession2"] + ',' + file1["primaryProfession3"] # combine three column of primaryProfession
-# file1.replace(to_replace={'primaryProfession': [r',{2,}']}, value=',', regex=True, inplace=True) # if the list include two or more comma, replace the value to one comma
-# file1.replace(to_replace={'primaryProfession': [r'^,', r',$']}, value='', regex=True, inplace=True) # if the list start at comma or end with comma, replace the value to ''
-# file1.drop(file1.loc[file1['primaryProfession'].isin([''])].index, inplace=True)
-# file1.drop(['primaryProfession1', 'primaryProfession2', 'primaryProfession3'], axis=1, inplace=True)
+profession = ['actor', 'actress', 'director', 'editor', 'producer', 'writer']
+file1[['primaryProfession1', 'primaryProfession2','primaryProfession3']] =(file1['primaryProfession'].str.split(',',expand=True)) # split primaryProfession to three column
+file1['primaryProfession1'].loc[~file1['primaryProfession1'].isin(profession)] = '' # if primaryProfession1 is not in profession, set its value to ''
+file1['primaryProfession2'].loc[~file1['primaryProfession2'].isin(profession)] = '' 
+file1['primaryProfession3'].loc[~file1['primaryProfession3'].isin(profession)] = ''
+file1["primaryProfession"] = file1["primaryProfession1"] + ',' + file1["primaryProfession2"] + ',' + file1["primaryProfession3"] # combine three column of primaryProfession
+file1.replace(to_replace={'primaryProfession': [r',{2,}']}, value=',', regex=True, inplace=True) # if the list include two or more comma, replace the value to one comma
+file1.replace(to_replace={'primaryProfession': [r'^,', r',$']}, value='', regex=True, inplace=True) # if the list start at comma or end with comma, replace the value to ''
+file1.drop(file1.loc[file1['primaryProfession'].isin([''])].index, inplace=True)
+file1.drop(['primaryProfession1', 'primaryProfession2', 'primaryProfession3'], axis=1, inplace=True)
 
-# file1[['knownForTitles1', 'knownForTitles2','knownForTitles3', 'knownForTitles4']] =(file1['knownForTitles'] + (3 - file1['knownForTitles'].str.count(',')).map(lambda x : x * ',')).str.split(',',expand=True) # 
-# file8 = pd.read_csv("csv/akas_basics_crew_ratings.csv")
-# tconst = file8['tconst'].tolist()
-# file1['knownForTitles1'].loc[~file1['knownForTitles1'].isin(tconst)] = ''
-# file1['knownForTitles2'].loc[~file1['knownForTitles2'].isin(tconst)] = ''
-# file1['knownForTitles3'].loc[~file1['knownForTitles3'].isin(tconst)] = ''
-# file1['knownForTitles4'].loc[~file1['knownForTitles4'].isin(tconst)] = ''
-# file1["knownForTitles"] = file1["knownForTitles1"] + ',' + file1["knownForTitles2"] + ',' + file1["knownForTitles3"] + ','+ file1["knownForTitles4"]
-# file1.replace(to_replace={'knownForTitles': [r',{2,}']}, value=',', regex=True, inplace=True)
-# file1.replace(to_replace={'knownForTitles': [r'^,', r',$']}, value='', regex=True, inplace=True)
-# file1.drop(file1.loc[file1['knownForTitles'].isin([''])].index, inplace=True)
-# file1.drop(['knownForTitles1', 'knownForTitles2', 'knownForTitles3', 'knownForTitles4'], axis=1, inplace=True)
-# file1.to_csv("new_csv/new.name.basics.csv", index=False) # output
+file1[['knownForTitles1', 'knownForTitles2','knownForTitles3', 'knownForTitles4']] =(file1['knownForTitles'] + (3 - file1['knownForTitles'].str.count(',')).map(lambda x : x * ',')).str.split(',',expand=True) # 
+file8 = pd.read_csv("csv/akas_basics_crew_ratings.csv")
+tconst = file8['tconst'].tolist()
+file1['knownForTitles1'].loc[~file1['knownForTitles1'].isin(tconst)] = ''
+file1['knownForTitles2'].loc[~file1['knownForTitles2'].isin(tconst)] = ''
+file1['knownForTitles3'].loc[~file1['knownForTitles3'].isin(tconst)] = ''
+file1['knownForTitles4'].loc[~file1['knownForTitles4'].isin(tconst)] = ''
+file1["knownForTitles"] = file1["knownForTitles1"] + ',' + file1["knownForTitles2"] + ',' + file1["knownForTitles3"] + ','+ file1["knownForTitles4"]
+file1.replace(to_replace={'knownForTitles': [r',{2,}']}, value=',', regex=True, inplace=True)
+file1.replace(to_replace={'knownForTitles': [r'^,', r',$']}, value='', regex=True, inplace=True)
+file1.drop(file1.loc[file1['knownForTitles'].isin([''])].index, inplace=True)
+file1.drop(['knownForTitles1', 'knownForTitles2', 'knownForTitles3', 'knownForTitles4'], axis=1, inplace=True)
+file1.to_csv("new_csv/new.name.basics.csv", index=False) # output
 
 # title.akas.csv
 # file2 = pd.read_csv("csv/title.akas.csv")
