@@ -31,7 +31,7 @@ import numpy as np
 # file1.replace(to_replace={'knownForTitles': [r'^,', r',$']}, value='', regex=True, inplace=True)
 # file1.drop(file1.loc[file1['knownForTitles'].isin([''])].index, inplace=True)
 # file1.drop(['knownForTitles1', 'knownForTitles2', 'knownForTitles3', 'knownForTitles4'], axis=1, inplace=True)
-# file1.to_csv("new.name.basics.csv", index=False) # output
+# file1.to_csv("new_csv/new.name.basics.csv", index=False) # output
 
 # title.akas.csv
 # file2 = pd.read_csv("csv/title.akas.csv")
@@ -42,7 +42,7 @@ import numpy as np
 # file2.drop(file2.loc[file2['ordering'] != 2].index, inplace=True) # remove ordering != 2 row
 # file2.drop(file2.loc[file2['region'].isin([r'\N']) | ~file2['tconst'].isin(tconst)].index, inplace=True) # remove ordering != 2 row
 # file2.drop(['ordering'], axis=1, inplace=True)
-# file2.to_csv("new.title.akas.csv", index=False)
+# file2.to_csv("new_csv/new.title.akas.csv", index=False)
 
 # # title.basic.csv
 # file3 = pd.read_csv("csv/title.basics.csv")
@@ -50,21 +50,21 @@ import numpy as np
 # file3.drop(file3.loc[file3['startYear'] < '2000'].index, inplace=True) # remove startYear < 2000 row
 # file3.drop(file3.loc[file3['startYear'].isin([r'\N']) | file3['runtimeMinutes'].isin([r'\N']) | file3['genres'].isin([r'\N']) | ~file3['titleType'].isin(['movie'])].index, inplace=True)
 # file3.drop(['titleType'], axis=1, inplace=True)
-# file3.to_csv("new.title.basics.csv", index=False)
+# file3.to_csv("new_csv/new.title.basics.csv", index=False)
 
 # title.crew.csv
 # file4 = pd.read_csv("csv/title.crew.csv")
 # file3 = pd.read_csv("new_csv/new.title.basics.csv")
 # tconst = file3['tconst'].tolist()
 # file4.drop(file4.loc[file4['directors'].isin([r'\N']) | file4['writers'].isin([r'\N']) | ~file4['tconst'].isin(tconst)].index, inplace=True)
-# file4.to_csv("new.title.crew.csv", index=False)
+# file4.to_csv("new_csv/new.title.crew.csv", index=False)
 
 # title.episode.csv
 # file5 = pd.read_csv("csv/title.episode.csv") # read title.episode.csv
 # file3 = pd.read_csv("new_csv/new.title.basics.csv")
 # tconst = file3['tconst'].tolist()
 # file5.drop(file5.loc[file5['seasonNumber'].isin([r'\N']) | file5['episodeNumber'].isin([r'\N']) | ~file5['tconst'].isin(tconst)].index, inplace=True)
-# file5.to_csv("new.title.episode.csv", index=False)
+# file5.to_csv("new_csv/new.title.episode.csv", index=False)
 
 # title.principals.csv
 # file6 = pd.read_csv("csv/title.principals.csv") # read title.principals.csv
@@ -73,7 +73,7 @@ import numpy as np
 # file6.drop(['job', 'characters'], axis=1, inplace=True)
 # profession = ['actor', 'actress', 'director', 'editor', 'producer', 'writer']
 # file6.drop(file6.loc[~file6['category'].isin(profession) | ~file6['tconst'].isin(tconst)].index, inplace=True)
-# file6.to_csv("new.title.principals.csv", index=False)
+# file6.to_csv("new_csv/new.title.principals.csv", index=False)
 
 # title.ratings.csv
 # file7 = pd.read_csv("csv/title.ratings.csv")
@@ -82,7 +82,7 @@ import numpy as np
 # print(file7.loc[:, 'numVotes'].mean()) # print numVote average
 # file7.drop(file7.loc[file7['numVotes'] < 1000].index, inplace=True)
 # file7.drop(file7.loc[~file7['tconst'].isin(tconst)].index, inplace=True)
-# file7.to_csv("new.title.ratings.csv", index=False)
+# file7.to_csv("new_csv/new.title.ratings.csv", index=False)
 
 # akas_basics_crew_ratings.csv
 # file8 = pd.read_csv("csv/akas_basics_crew_ratings.csv")
@@ -124,4 +124,4 @@ import numpy as np
 # file8.insert(6, "directors", new_directors_list, False)
 # file8.insert(7, "writers", new_writers_list, False)
 # file8.drop(file8.loc[file8['directors'].isin(['']) | file8['writers'].isin([''])].index, inplace=True)
-# file8.to_csv("new.akas_basics_crew_ratings.csv", index=False)
+# file8.to_csv("new_csv/new.akas_basics_crew_ratings.csv", index=False)
