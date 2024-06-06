@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # name.basics.csv
-file1 = pd.read_csv("csv/name.basics.csv") # read name.basics.csv
+# file1 = pd.read_csv("csv/name.basics.csv") # read name.basics.csv
 # file1.drop(['birthYear', 'deathYear'], axis=1, inplace=True) #remove birthYear, deathYear column
 # file6 = pd.read_csv("new_csv/new.title.principals.csv")
 # nconst = file6['nconst'].unique().tolist() # save all unique nconst value in new.title.principals.csv
@@ -70,7 +70,7 @@ file1 = pd.read_csv("csv/name.basics.csv") # read name.basics.csv
 # file6 = pd.read_csv("csv/title.principals.csv") # read title.principals.csv
 # file8 = pd.read_csv("csv/akas_basics_crew_ratings.csv")
 # tconst = file8['tconst'].tolist()
-# file6.drop(['job', 'characters'], axis=1, inplace=True)
+# file6.drop(['ordering', 'job', 'characters'], axis=1, inplace=True)
 # profession = ['actor', 'actress', 'director', 'editor', 'producer', 'writer']
 # file6.drop(file6.loc[~file6['category'].isin(profession) | ~file6['tconst'].isin(tconst)].index, inplace=True)
 # file6.to_csv("new_csv/new.title.principals.csv", index=False)
@@ -125,3 +125,18 @@ file1 = pd.read_csv("csv/name.basics.csv") # read name.basics.csv
 # file8.insert(7, "writers", new_writers_list, False)
 # file8.drop(file8.loc[file8['directors'].isin(['']) | file8['writers'].isin([''])].index, inplace=True)
 # file8.to_csv("new_csv/new.akas_basics_crew_ratings.csv", index=False)
+
+# new.title.principals.csv
+# file9 = pd.read_csv("new_csv/new.title.principals.csv")
+# file8 = pd.read_csv("csv/akas_basics_crew_ratings.csv")
+# tconst = file8['tconst'].tolist()
+# file9.drop(file9.loc[~file9['tconst'].isin(tconst)].index, inplace=True)
+# file9.to_csv("new_csv/new.title.principals.csv", index=False)
+
+# new.akas_basics_crew_ratings.csv
+# file8 = pd.read_csv("new_csv/new.akas_basics_crew_ratings.csv")
+# file9 = pd.read_csv("new_csv/new.title.principals.csv")
+# tconst = file9['tconst'].unique().tolist()
+# file8.drop(file8.loc[~file8['tconst'].isin(tconst)].index, inplace=True)
+# file8.to_csv("new_csv/new.akas_basics_crew_ratings.csv", index=False)
+
