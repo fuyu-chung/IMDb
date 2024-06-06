@@ -8,19 +8,20 @@ from sklearn.model_selection import train_test_split
 data = pd.read_csv("new_csv/vector.csv")
 # 切割 train data 與 test data
 
-feature = data[['region', 'startYear', 'genres', 'runtimeMinutes', 'directors', 'writers', 'numVotes']]
+feature = data[['tconst','primaryTitle','region', 'startYear', 'genres', 'runtimeMinutes', 'directors', 'writers', 'numVotes']]
 label = data['averageRating']
-# tconst = data['tconst']
-# primaryTitle = data['primaryTitle']
+
+# 保留 tconst, primaryTitle
+metadata = data[['tconst', 'primaryTitle']]
 X_train, X_test, y_train, y_test = train_test_split(feature, label, train_size=0.9)
 
-# train data
-# X_train = train_data[['region', 'startYear', 'runtimeMinutes', 'genres', 'directors', 'writers', 'numVotes']]
-# y_train = train_data['averageRating']
+# 分離 train 和 test 中的 tconst, primaryTitle
+X_train_meta = X_train[['tconst', 'primaryTitle']]
+X_test_meta = X_test[['tconst', 'primaryTitle']]
 
-# test data
-# X_test = test_data[['region', 'startYear', 'runtimeMinutes', 'genres', 'directors', 'writers', 'numVotes']]
-# y_test = test_data['averageRating']
+# 刪除 train 和 test 中的 tconst, primaryTitle
+X_train = X_train.drop(columns=['tconst', 'primaryTitle'])
+X_test = X_test.drop(columns=['tconst', 'primaryTitle'])
 
 # """ 訓練模型 """
 
@@ -43,23 +44,28 @@ print('特徵重要程度:',model.feature_importances_)
 
 """ 畫圖 """
 
-# plt.figure(figsize=(8, 6))
-# plt.scatter(y_test, y_pred, color='blue',s=5)
-# plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], color='red', linestyle='--')
-# plt.xlabel('Actual')
-# plt.ylabel('Predicted')
-# plt.savefig('new_csv/result.png')
-# plt.show()
+plt.figure(figsize=(8, 6))
+plt.scatter(y_test, y_pred, color='blue',s=5)
+plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], color='red', linestyle='--')
+plt.xlabel('Actual')
+plt.ylabel('Predicted')
+plt.savefig('new_csv/result.png')
+plt.show()
 
 """ 建立 csv """
 
 # 建立包含 actual、predict、tconst和  primaryTitle 的DataFrame
-# results = pd.DataFrame({'tconst': tconst, 'primaryTitle': primaryTitle, 'Actual': y_test, 'Predicted': y_pred})
+results = pd.DataFrame({
+    'tconst': X_test_meta['tconst'],
+    'primaryTitle': X_test_meta['primaryTitle'],
+    'Actual': y_test,
+    'Predicted': y_pred
+})
 
 # 印前十行
-# print(results.head(10))
+print(results.head(10))
 
-# if os.path.exists('new_csv/result.csv'):
-#     os.remove('new_csv/result.csv')
+if os.path.exists('new_csv/result.csv'):
+    os.remove('new_csv/result.csv')
 
-# results.to_csv('new_csv/result.csv', index=False)
+results.to_csv('new_csv/result.csv', index=False)
