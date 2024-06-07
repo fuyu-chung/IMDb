@@ -1,9 +1,9 @@
 import pandas as pd
 import os
 
-file1 = pd.read_csv("new_csv\\new.akas_basics_crew_ratings.csv") # read akas_basics_crew_ratings.csv
-file2 = pd.read_csv("new_csv\\new.name.basics.csv") # read new.name.basics.csv
-file3 = pd.read_csv("new_csv\\new.title.principals.csv") # read new.title.principals.csv
+file1 = pd.read_csv("new_csv/new.akas_basics_crew_ratings.csv") # read akas_basics_crew_ratings.csv
+file2 = pd.read_csv("new_csv/new.name.basics.csv") # read new.name.basics.csv
+file3 = pd.read_csv("new_csv/new.title.principals.csv") # read new.title.principals.csv
 count = 0
 
 ########################################################################################
@@ -91,11 +91,11 @@ for i in range(len(file2)):
 
 
 # 如果 Directors_Actor_Writer.csv 存在，則刪掉
-if os.path.exists('new_csv\\Directors_Actor_Writer.csv'):
-    os.remove('new_csv\\Directors_Actor_Writer.csv')
+if os.path.exists('new_csv/Directors_Actor_Writer.csv'):
+    os.remove('new_csv/Directors_Actor_Writer.csv')
 
 # 保存新的 CSV
-file2.to_csv('new_csv\\Directors_Actor_Writer.csv', index=False)
+file2.to_csv('new_csv/Directors_Actor_Writer.csv', index=False)
 
 """ 工作人員對應的評分存在 nconst_rate (字典) """
 
@@ -123,14 +123,50 @@ for i in range(len(file1)):
             sum += nconst_rate[writer]
     avg_rating = sum / len(writers)
     file1.at[i, 'writers'] = avg_rating
+########################################################################################
+""" actor """
+
+for i in range(len(file1)):
+    actors = file1.iloc[i]['actor'].split(',')
+    sum = 0
+    for actor in actors:
+        if actor in nconst_rate:
+            sum += nconst_rate[actor]
+    avg_rating = sum / len(actors)
+    file1.at[i, 'actor'] = avg_rating
+    
+########################################################################################
+""" actress """
+
+for i in range(len(file1)):
+    actresses = file1.iloc[i]['actress'].split(',')
+    sum = 0
+    for actress in actresses:
+        if actress in nconst_rate:
+            sum += nconst_rate[writer]
+    avg_rating = sum / len(actresses)
+    file1.at[i, 'actress'] = avg_rating
+########################################################################################
+""" producer """
+
+for i in range(len(file1)):
+    producers = file1.iloc[i]['producer'].split(',')
+    sum = 0
+    for producer in producers:
+        if producer in nconst_rate:
+            sum += nconst_rate[producer]
+    avg_rating = sum / len(producers)
+    file1.at[i, 'producer'] = avg_rating
 
 ########################################################################################
 """ 存檔 """
 
 # 如果 vector.csv 存在，則刪掉
-if os.path.exists('new_csv\\vector.csv'):
-    os.remove('new_csv\\vector.csv')
+if os.path.exists('new_csv/vector.csv'):
+    os.remove('new_csv/vector.csv')
+
+# file1.drop(file1.loc[file1['actor'].isin([0.0]) | file1['actress'].isin([0.0])].index, inplace=True) # remove nconst not include in new.title.principals['nconst'] row or # remove primaryProfession == r'\N' row
 
 # 保存新的 CSV
-file1.to_csv('new_csv\\vector.csv', index=False)
+file1.to_csv('new_csv/vector.csv', index=False)
 
