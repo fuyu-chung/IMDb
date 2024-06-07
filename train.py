@@ -8,12 +8,12 @@ from sklearn.model_selection import train_test_split
 data = pd.read_csv("new_csv/vector.csv")
 # 切割 train data 與 test data
 
-feature = data[['tconst','primaryTitle','region', 'startYear', 'genres', 'runtimeMinutes', 'directors', 'writers', 'numVotes']]
+feature = data[['tconst','primaryTitle', 'genres', 'runtimeMinutes', 'directors', 'writers', 'numVotes', 'actor', 'producer']]
 label = data['averageRating']
 
 # 保留 tconst, primaryTitle
 metadata = data[['tconst', 'primaryTitle']]
-X_train, X_test, y_train, y_test = train_test_split(feature, label, train_size=0.9)
+X_train, X_test, y_train, y_test = train_test_split(feature, label, train_size=0.85)
 
 # 分離 train 和 test 中的 tconst, primaryTitle
 X_train_meta = X_train[['tconst', 'primaryTitle']]
@@ -50,7 +50,7 @@ plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], color='red', li
 plt.xlabel('Actual')
 plt.ylabel('Predicted')
 plt.savefig('new_csv/result.png')
-plt.show()
+# plt.show()
 
 """ 建立 csv """
 
@@ -63,7 +63,7 @@ results = pd.DataFrame({
 })
 
 # 印前十行
-print(results.head(10))
+# print(results.head(10))
 
 if os.path.exists('new_csv/result.csv'):
     os.remove('new_csv/result.csv')
