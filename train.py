@@ -10,7 +10,10 @@ data = pd.read_csv("new_csv/vector.csv")
 # 切割 train data 與 test data
 data = data[data['startYear'] < 2024]
 
+# feature = data[['tconst','primaryTitle', 'region', 'startYear', 'genres', 'runtimeMinutes', 'directors', 'writers', 'numVotes']]
+# feature = data[['tconst','primaryTitle', 'region', 'startYear', 'genres', 'runtimeMinutes', 'directors', 'writers', 'numVotes', 'actor', 'producer']]
 feature = data[['tconst','primaryTitle', 'genres', 'runtimeMinutes', 'directors', 'writers', 'numVotes', 'actor', 'producer']]
+
 label = data['averageRating']
 
 # 保留 tconst, primaryTitle
