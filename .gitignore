@@ -6,3 +6,6 @@
 
 # original csv files
 csv
+
+# predict file
+random_forest_model.pkl
