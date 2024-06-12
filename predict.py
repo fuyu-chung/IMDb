@@ -28,18 +28,18 @@ y_pred = model.predict(X_test)
 # """ 檢查模型是否良好 """
 
 mse = mean_squared_error(y_test, y_pred)
-print("Mean Squared Error:", mse)
-print('測試集:',model.score(X_test,y_test))
-print('特徵重要程度:',model.feature_importances_)
+# print("Mean Squared Error:", mse)
+# print('測試集:',model.score(X_test,y_test))
+# print('特徵重要程度:',model.feature_importances_)
 
 """ 畫圖 """
 
-plt.figure(figsize=(8, 6))
-plt.scatter(y_test, y_pred, color='blue',s=5)
-plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], color='red', linestyle='--')
-plt.xlabel('Actual')
-plt.ylabel('Predicted')
-plt.savefig('new_csv/pred.png')
+# plt.figure(figsize=(8, 6))
+# plt.scatter(y_test, y_pred, color='blue',s=5)
+# plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], color='red', linestyle='--')
+# plt.xlabel('Actual')
+# plt.ylabel('Predicted')
+# plt.savefig('new_csv/pred.png')
 # plt.show()
 
 """ 建立 predict.csv """
@@ -48,7 +48,7 @@ plt.savefig('new_csv/pred.png')
 val = pd.DataFrame({
     'tconst': X_test_meta['tconst'],
     'primaryTitle': X_test_meta['primaryTitle'],
-    'Actual': y_test,
+    # 'Actual': y_test,
     'Predicted': y_pred
 })
 
@@ -59,3 +59,4 @@ val = pd.DataFrame({
 #     os.remove('new_csv/result.csv')
 
 val.to_csv('new_csv/pred.csv', index=False)
+print('finish')
